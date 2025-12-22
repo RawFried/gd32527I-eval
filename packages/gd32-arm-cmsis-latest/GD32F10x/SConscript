@@ -1,0 +1,43 @@
+import rtconfig
+from building import *
+import os
+
+# Import environment variables 
+Import('env')
+
+# get current directory
+cwd = GetCurrentDir()
+
+# The set of source files associated with this SConscript file.
+src = Split('''
+GD/GD32F10x/Source/system_gd32f10x.c
+''')
+
+path = [
+    cwd + '/GD/GD32F10x/Include',
+    cwd,]
+
+# Map microcontroller units (MCUs) to their corresponding startup files
+mcu_startup_files = {
+    'GD32F10X_MD': 'startup_gd32f10x_md.s',
+    'GD32F10X_HD': 'startup_gd32f10x_hd.s',
+    'GD32F10X_XD': 'startup_gd32f10x_xd.s',
+    'GD32F10X_CL': 'startup_gd32f10x_cl.s',
+}
+
+# Check each defined MCU, match the platform and append the appropriate startup file
+for mcu, startup_file in mcu_startup_files.items():
+    if mcu in env.get('CPPDEFINES', []):
+        if rtconfig.PLATFORM in ['gcc']:
+            src += [os.path.join(cwd, 'GD', 'GD32F10x', 'Source', 'GCC', startup_file)]
+        elif rtconfig.PLATFORM in ['armcc', 'armclang']:
+            src += [os.path.join(cwd, 'GD', 'GD32F10x', 'Source', 'ARM', startup_file)]
+        elif rtconfig.PLATFORM in ['iccarm']:
+            src += [os.path.join(cwd, 'GD', 'GD32F10x', 'Source', 'IAR', startup_file)]
+        break
+
+CPPDEFINES = ['USE_STDPERIPH_DRIVER']
+
+group = DefineGroup('Libraries', src, depend = ['SOC_SERIES_GD32F10x'], CPPPATH = path, CPPDEFINES = CPPDEFINES)
+
+Return('group')

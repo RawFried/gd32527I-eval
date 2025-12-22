@@ -1,0 +1,44 @@
+import rtconfig
+from building import *
+import os
+
+# Import environment variables
+Import('env')
+
+# get current directory
+cwd = GetCurrentDir()
+
+# The set of source files associated with this SConscript file.
+src = Split('''
+GD/GD32F3x0/Source/system_gd32f3x0.c
+''')
+
+path = [
+    cwd + '/GD/GD32F3x0/Include',
+    cwd,]
+
+# Map microcontroller units (MCUs) to their corresponding startup files
+mcu_startup_files = {
+    'GD32F310': 'startup_gd32f3x0.s',
+    'GD32F330': 'startup_gd32f3x0.s',
+    'GD32F350': 'startup_gd32f3x0.s',
+    'GD32F355': 'startup_gd32f3x0.s',
+    'GD32F370': 'startup_gd32f3x0.s',
+}
+
+# Check each defined MCU, match the platform and append the appropriate startup file
+for mcu, startup_file in mcu_startup_files.items():
+    if mcu in env.get('CPPDEFINES', []):
+        if rtconfig.PLATFORM in ['gcc']:
+            src += [os.path.join(cwd, 'GD', 'GD32F3x0', 'Source', 'GCC', startup_file)]
+        elif rtconfig.PLATFORM in ['armcc', 'armclang']:
+            src += [os.path.join(cwd, 'GD', 'GD32F3x0', 'Source', 'ARM', startup_file)]
+        elif rtconfig.PLATFORM in ['iccarm']:
+            src += [os.path.join(cwd, 'GD', 'GD32F3x0', 'Source', 'IAR', startup_file)]
+        break
+
+CPPDEFINES = ['USE_STDPERIPH_DRIVER']
+
+group = DefineGroup('Libraries', src, depend = ['SOC_SERIES_GD32F3x0'], CPPPATH = path, CPPDEFINES = CPPDEFINES)
+
+Return('group')

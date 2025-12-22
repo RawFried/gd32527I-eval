@@ -1,0 +1,79 @@
+import rtconfig
+from building import *
+
+# get current directory
+cwd = GetCurrentDir()
+
+# The set of source files associated with this SConscript file.
+
+src = Split('''
+GD32F3x0_standard_peripheral/Source/gd32f3x0_gpio.c
+GD32F3x0_standard_peripheral/Source/gd32f3x0_rcu.c
+GD32F3x0_standard_peripheral/Source/gd32f3x0_exti.c
+GD32F3x0_standard_peripheral/Source/gd32f3x0_misc.c
+GD32F3x0_standard_peripheral/Source/gd32f3x0_syscfg.c
+''')
+
+if GetDepend(['RT_USING_SERIAL']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_usart.c']
+
+if GetDepend(['RT_USING_I2C']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_i2c.c']
+
+if GetDepend(['RT_USING_SPI']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_spi.c']
+
+if GetDepend(['RT_USING_CAN']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_can.c']
+
+if GetDepend(['RT_USING_ADC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_adc.c']
+
+if GetDepend(['RT_USING_DAC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_dac.c']
+
+if GetDepend(['RT_USING_HWTIMER']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_timer.c']
+
+if GetDepend(['RT_USING_RTC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_rtc.c']
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_pmu.c']
+
+if GetDepend(['RT_USING_WDT']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_wwdgt.c']
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_fwdgt.c']
+
+if GetDepend(['BSP_USING_CEC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_cec.c']
+
+if GetDepend(['BSP_USING_CMP']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_cmp.c']
+
+if GetDepend(['BSP_USING_CRC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_crc.c']
+
+if GetDepend(['BSP_USING_CTC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_ctc.c']
+
+if GetDepend(['BSP_USING_DBG']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_dbg.c']
+
+if GetDepend(['BSP_USING_DMA']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_dma.c']
+
+if GetDepend(['BSP_USING_FMC']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_fmc.c']
+
+if GetDepend(['BSP_USING_SYSCFG']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_syscfg.c']
+
+if GetDepend(['BSP_USING_TSI']):
+    src += ['GD32F3x0_standard_peripheral/Source/gd32f3x0_tsi.c']
+
+path = [cwd + '/GD32F3x0_standard_peripheral/Include']
+
+CPPDEFINES = ['USE_STDPERIPH_DRIVER']
+
+group = DefineGroup('Libraries', src, depend = ['SOC_SERIES_GD32F3x0'], CPPPATH = path, CPPDEFINES = CPPDEFINES)
+
+Return('group')
