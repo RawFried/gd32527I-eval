@@ -1,0 +1,8 @@
+__pycache__/
+
+**.dblite
+**.o
+**.pyc
+**.bin
+**.elf
+**.map
