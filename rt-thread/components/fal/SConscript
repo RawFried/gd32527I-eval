@@ -4,9 +4,12 @@ from building import *
 cwd     = GetCurrentDir()
 src     = Glob('src/*.c')
 CPPPATH = [cwd + '/inc']
+CPPPATH += [cwd + '/samples/porting']
 
 if GetDepend(['FAL_USING_SFUD_PORT']):
     src += Glob('samples/porting/fal_flash_sfud_port.c')
+
+src += Glob('samples/porting/fal_flash_gd32f5_port.c')
 
 group = DefineGroup('Fal', src, depend = ['RT_USING_FAL'], CPPPATH = CPPPATH)
 

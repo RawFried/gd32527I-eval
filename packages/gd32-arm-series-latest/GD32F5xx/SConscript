@@ -13,6 +13,7 @@ GD32F5xx_standard_peripheral/Source/gd32f5xx_dma.c
 GD32F5xx_standard_peripheral/Source/gd32f5xx_exti.c
 GD32F5xx_standard_peripheral/Source/gd32f5xx_misc.c
 GD32F5xx_standard_peripheral/Source/gd32f5xx_syscfg.c
+GD32F5xx_standard_peripheral/Source/gd32f5xx_fmc.c
 ''')
 
 if GetDepend(['RT_USING_SERIAL']):

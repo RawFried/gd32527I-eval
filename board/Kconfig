@@ -13,7 +13,57 @@ config SOC_GD32F527IS
     default y
 
 menu "Onboard Peripheral Drivers"
+config BSP_USING_SPI_FLASH
+        bool "Enable SPI Flash support"
+        default n
 
+    if BSP_USING_SPI_FLASH
+
+        #
+        # 公共 SPI Flash 依赖（内部使用）
+        #
+        config BSP_USING_SPI_FLASH_COMMON
+            bool
+            default y
+            select BSP_USING_SPI
+            select PKG_USING_FAL
+            select FAL_USING_SFUD_PORT
+            select RT_USING_SFUD
+
+        menu "SPI Flash"
+
+            config BSP_USING_SPI1_FLASH
+                bool "Enable SPI1 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI1
+                default n
+            
+            config BSP_USING_SPI2_FLASH
+                bool "Enable SPI2 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI2
+                default n
+
+            config BSP_USING_SPI3_FLASH
+                bool "Enable SPI3 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI3
+                default n
+
+            config BSP_USING_SPI4_FLASH
+                bool "Enable SPI4 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI4
+                default n
+
+            config BSP_USING_SPI5_FLASH
+                bool "Enable SPI5 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI5
+                default n
+
+        endmenu    # SPI Flash
+    endif         # BSP_USING_SPI_FLASH
 endmenu
 
 menu "On-chip Peripheral Drivers"
