@@ -314,11 +314,6 @@
 /* Micrium: Micrium software products porting for RT-Thread */
 
 /* end of Micrium: Micrium software products porting for RT-Thread */
-#define PKG_USING_FAL
-#define FAL_DEBUG_CONFIG
-#define FAL_DEBUG 1
-#define PKG_USING_FAL_V10000
-#define PKG_FAL_VER_NUM 0x10000
 /* end of system packages */
 
 /* peripheral libraries and drivers */
