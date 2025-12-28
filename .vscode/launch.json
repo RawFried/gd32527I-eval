@@ -10,7 +10,7 @@
             "executable": "./rtthread.elf",
             "request": "launch",
             "type": "cortex-debug",
-            "runToEntryPoint": "main",
+            "runToEntryPoint": "entry",
             "servertype": "pyocd",
             "interface": "swd",
             "device": "gd32f527is",
