@@ -36,9 +36,10 @@ extern struct fal_flash_dev nor_flash0;
 #define FAL_PART_TABLE                                                               \
 {                                                                                    \
     {FAL_PART_MAGIC_WORD,  "bootloader",      "gd32_onchip",         0, 1024*1024, 0}, \
-    {FAL_PART_MAGIC_WORD, "application",      "gd32_onchip", 1024*1024, 6656*1024, 0}, \
-    {FAL_PART_MAGIC_WORD,   "easyflash", NOR_FLASH_DEV_NAME,         0, 1024*1024, 0}, \
-    {FAL_PART_MAGIC_WORD,    "download", NOR_FLASH_DEV_NAME, 1024*1024, 1024*1024, 0}, \
+    {FAL_PART_MAGIC_WORD, "application",      "gd32_onchip", 1024*1024, 3072*1024, 0}, \
+    {FAL_PART_MAGIC_WORD,    "download",      "gd32_onchip", 4096*1024, 3072*1024, 0}, \
+    {FAL_PART_MAGIC_WORD,    "fdb-kvdb", NOR_FLASH_DEV_NAME,         0, 1024*1024, 0}, \
+    {FAL_PART_MAGIC_WORD,    "fdb-tsdb", NOR_FLASH_DEV_NAME, 1024*1024, 1024*1024, 0}, \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
 

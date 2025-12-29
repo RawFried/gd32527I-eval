@@ -82,7 +82,7 @@
 #define RT_HOOK_USING_FUNC_PTR
 #define RT_USING_IDLE_HOOK
 #define RT_IDLE_HOOK_LIST_SIZE 4
-#define IDLE_THREAD_STACK_SIZE 256
+#define IDLE_THREAD_STACK_SIZE 1024
 #define RT_USING_TIMER_SOFT
 #define RT_TIMER_THREAD_PRIO 4
 #define RT_TIMER_THREAD_STACK_SIZE 512
@@ -172,7 +172,6 @@
 #define RT_SFUD_USING_FLASH_INFO_TABLE
 #define RT_SFUD_USING_QSPI
 #define RT_SFUD_SPI_MAX_HZ 50000000
-#define RT_DEBUG_SFUD
 #define RT_USING_PIN
 /* end of Device Drivers */
 
@@ -212,8 +211,8 @@
 /* Utilities */
 
 #define RT_USING_ULOG
-#define ULOG_OUTPUT_LVL_D
-#define ULOG_OUTPUT_LVL 7
+#define ULOG_OUTPUT_LVL_I
+#define ULOG_OUTPUT_LVL 6
 #define ULOG_ASSERT_ENABLE
 #define ULOG_LINE_BUF_SIZE 1024
 
@@ -314,6 +313,18 @@
 /* Micrium: Micrium software products porting for RT-Thread */
 
 /* end of Micrium: Micrium software products porting for RT-Thread */
+#define PKG_USING_FLASHDB
+#define FDB_USING_KVDB
+#define FDB_KV_AUTO_UPDATE
+#define FDB_USING_TSDB
+#define FDB_USING_FAL_MODE
+#define FDB_WRITE_GRAN_1BIT
+#define FDB_WRITE_GRAN 1
+#define FDB_NOT_USING_FILE_MODE
+#define FLASHDB_USING_SAMPLES
+#define FDB_DEBUG_ENABLE
+#define PKG_USING_FLASHDB_V20100
+#define PKG_FLASHDB_VER_NUM 0x20100
 /* end of system packages */
 
 /* peripheral libraries and drivers */
