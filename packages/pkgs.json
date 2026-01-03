@@ -13,5 +13,10 @@
   "name": "GD32_ARM_SERIES_DRIVER",
   "path": "/packages/peripherals/hal-sdk/gd32/gd32-arm-series",
   "ver": "latest"
+ },
+ {
+  "name": "CANFESTIVAL",
+  "path": "/packages/misc/CanFestival",
+  "ver": "v1.0.0"
  }
 ]

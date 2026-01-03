@@ -173,6 +173,7 @@
 #define RT_SFUD_USING_QSPI
 #define RT_SFUD_SPI_MAX_HZ 50000000
 #define RT_USING_PIN
+#define RT_USING_HWTIMER
 /* end of Device Drivers */
 
 /* C/C++ and POSIX layer */
@@ -405,6 +406,12 @@
 /* entertainment: terminal games and other interesting software packages */
 
 /* end of entertainment: terminal games and other interesting software packages */
+#define PKG_USING_CANFESTIVAL
+#define CANFESTIVAL_CAN_DEVICE_NAME "bxcan1"
+#define CANFESTIVAL_TIMER_DEVICE_NAME "timer0"
+#define CANFESTIVAL_RECV_THREAD_PRIO 9
+#define CANFESTIVAL_TIMER_THREAD_PRIO 10
+#define PKG_USING_CANFESTIVAL_V100
 /* end of miscellaneous packages */
 
 /* Arduino libraries */
