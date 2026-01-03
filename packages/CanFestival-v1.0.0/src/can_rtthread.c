@@ -49,7 +49,7 @@ unsigned char canSend(CAN_PORT notused, Message *m)
 {
 	struct rt_can_msg msg;
 
-	msg.hdr = can_data.filter->items[0].hdr;
+	msg.hdr_index = can_data.filter->items[0].hdr_bank;
 	msg.id = m->cob_id;
 	msg.ide = 0;
 	msg.rtr = m->rtr;
@@ -77,16 +77,16 @@ void canopen_recv_thread_entry(void* parameter)
     while (1)
     {
         if (rt_event_recv(&canpara->event,
-                          (1 << canpara->filter->items[0].hdr),
+                          (1 << canpara->filter->items[0].hdr_bank),
                           canpara->eventopt,
                           RT_WAITING_FOREVER, &e) != RT_EOK)
         {
             continue;
         }
 
-		if (e & (1 << canpara->filter->items[0].hdr))
+		if (e & (1 << canpara->filter->items[0].hdr_bank))
 		{
-			msg.hdr = canpara->filter->items[0].hdr;
+			msg.hdr_index = canpara->filter->items[0].hdr_bank;
 			while (rt_device_read(candev, 0, &msg, sizeof(msg)) == sizeof(msg))
 			{
 				co_msg.cob_id = msg.id;

@@ -1,4 +1,3 @@
-#include <stm32f10x.h>
 #include <stdbool.h>
 #include <rtthread.h>
 #include <rtdevice.h>
