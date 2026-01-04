@@ -410,7 +410,7 @@
 /* end of entertainment: terminal games and other interesting software packages */
 #define PKG_USING_CANFESTIVAL
 #define CANFESTIVAL_CAN_DEVICE_NAME "can0"
-#define CANFESTIVAL_TIMER_DEVICE_NAME "timer0"
+#define CANFESTIVAL_TIMER_DEVICE_NAME "timer5"
 #define CANFESTIVAL_RECV_THREAD_PRIO 9
 #define CANFESTIVAL_TIMER_THREAD_PRIO 10
 #define CANFESTIVAL_USING_EG_MASTER402
@@ -496,9 +496,9 @@
 #define BSP_UART0_TX_BUFSIZE 1024
 #define BSP_USING_SPI
 #define BSP_USING_SPI5
-#define BSP_USING_TIM
-#define BSP_USING_TIM5
-#define BSP_USING_TIM6
+#define BSP_USING_HWTIMER
+#define BSP_USING_HWTIMER5
+#define BSP_USING_HWTIMER6
 #define BSP_USING_CAN
 #define BSP_USING_CAN0
 #define BSP_CAN0_TX_PH13

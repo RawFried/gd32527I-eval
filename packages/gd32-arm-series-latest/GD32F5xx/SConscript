@@ -25,7 +25,7 @@ if GetDepend(['RT_USING_I2C']):
 if GetDepend(['RT_USING_SPI']):
     src += ['GD32F5xx_standard_peripheral/Source/gd32f5xx_spi.c']
     
-if GetDepend(['RT_USING_PWM']):
+if GetDepend(['RT_USING_PWM']) or GetDepend(['BSP_USING_HWTIMER']):
     src += ['GD32F5xx_standard_peripheral/Source/gd32f5xx_timer.c']
 
 if GetDepend(['RT_USING_CAN']):
