@@ -1,8 +1,14 @@
-__pycache__/
+# ignore floder
+__pycache__/**
+.vscode/**
 
+# ignore file
 **.dblite
 **.o
 **.pyc
 **.bin
 **.elf
 **.map
+
+# not ignore specific file
+!.vscode/launch.json

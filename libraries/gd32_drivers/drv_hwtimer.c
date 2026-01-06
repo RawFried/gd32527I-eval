@@ -285,7 +285,7 @@ static gd32_hwtimer_device g_gd32_hwtimer[] = {
         "timer5",
         {
              TIMER5,
-             TIMER5_IRQn,
+             TIMER5_DAC_IRQn,
              RCU_TIMER5,
         },
         {0},
@@ -491,7 +491,7 @@ void TIMER4_IRQHandler(void)
 #endif
 
 #ifdef BSP_USING_HWTIMER5
-void TIMER5_IRQHandler(void)
+void TIMER5_DAC_IRQHandler(void)
 {
     rt_interrupt_enter();
     rt_device_hwtimer_isr(&g_gd32_hwtimer[TIM5_INDEX].hwtimer_dev);
