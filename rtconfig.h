@@ -7,6 +7,16 @@
 
 /* rt_vsnprintf options */
 
+#define RT_KLIBC_USING_VSNPRINTF_LONGLONG
+#define RT_KLIBC_USING_VSNPRINTF_STANDARD
+#define RT_KLIBC_USING_VSNPRINTF_DECIMAL_SPECIFIERS
+#define RT_KLIBC_USING_VSNPRINTF_EXPONENTIAL_SPECIFIERS
+#define RT_KLIBC_USING_VSNPRINTF_WRITEBACK_SPECIFIER
+#define RT_KLIBC_USING_VSNPRINTF_INTEGER_BUFFER_SIZE 32
+#define RT_KLIBC_USING_VSNPRINTF_DECIMAL_BUFFER_SIZE 32
+#define RT_KLIBC_USING_VSNPRINTF_FLOAT_PRECISION 6
+#define RT_KLIBC_USING_VSNPRINTF_MAX_INTEGRAL_DIGITS_FOR_DECIMAL 9
+#define RT_KLIBC_USING_VSNPRINTF_LOG10_TAYLOR_TERMS 4
 /* end of rt_vsnprintf options */
 
 /* rt_vsscanf options */
@@ -72,7 +82,7 @@
 #define RT_HOOK_USING_FUNC_PTR
 #define RT_USING_IDLE_HOOK
 #define RT_IDLE_HOOK_LIST_SIZE 4
-#define IDLE_THREAD_STACK_SIZE 256
+#define IDLE_THREAD_STACK_SIZE 1024
 #define RT_USING_TIMER_SOFT
 #define RT_TIMER_THREAD_PRIO 4
 #define RT_TIMER_THREAD_STACK_SIZE 512
@@ -101,7 +111,7 @@
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
 #define RT_CONSOLE_DEVICE_NAME "uart0"
-#define RT_VER_NUM 0x50201
+#define RT_VER_NUM 0x50300
 #define RT_BACKTRACE_LEVEL_MAX_NR 32
 /* end of RT-Thread Kernel */
 #define RT_USING_HW_ATOMIC
@@ -134,24 +144,38 @@
 
 /* DFS: device virtual file system */
 
-#define RT_USING_DFS
-#define DFS_USING_POSIX
-#define DFS_USING_WORKDIR
-#define DFS_FD_MAX 16
-#define RT_USING_DFS_V1
-#define DFS_FILESYSTEMS_MAX 4
-#define DFS_FILESYSTEM_TYPES_MAX 4
 /* end of DFS: device virtual file system */
+#define RT_USING_FAL
+#define FAL_USING_DEBUG
+#define FAL_PART_HAS_TABLE_CFG
+#define FAL_USING_SFUD_PORT
+#define FAL_USING_NOR_FLASH_DEV_NAME "GD25Q16B"
 
 /* Device Drivers */
 
 #define RT_USING_DEVICE_IPC
 #define RT_UNAMED_PIPE_NUMBER 64
 #define RT_USING_SERIAL
-#define RT_USING_SERIAL_V1
+#define RT_USING_SERIAL_V2
+#define RT_SERIAL_BUF_STRATEGY_OVERWRITE
 #define RT_SERIAL_USING_DMA
-#define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_CAN
+#define RT_CAN_USING_HDR
+#define RT_CAN_USING_CANFD
+#define RT_CANMSG_BOX_SZ 16
+#define RT_CANSND_BOX_NUM 1
+#define RT_CANSND_MSG_TIMEOUT 100
+#define RT_CAN_NB_TX_FIFO_SIZE 256
+#define RT_USING_SPI
+#define RT_USING_SPI_ISR
+#define RT_USING_QSPI
+#define RT_USING_SFUD
+#define RT_SFUD_USING_SFDP
+#define RT_SFUD_USING_FLASH_INFO_TABLE
+#define RT_SFUD_USING_QSPI
+#define RT_SFUD_SPI_MAX_HZ 50000000
 #define RT_USING_PIN
+#define RT_USING_HWTIMER
 /* end of Device Drivers */
 
 /* C/C++ and POSIX layer */
@@ -189,16 +213,28 @@
 
 /* Utilities */
 
+#define RT_USING_ULOG
+#define ULOG_OUTPUT_LVL_I
+#define ULOG_OUTPUT_LVL 6
+#define ULOG_ASSERT_ENABLE
+#define ULOG_LINE_BUF_SIZE 1024
+
+/* log format */
+
+#define ULOG_OUTPUT_FLOAT
+#define ULOG_USING_COLOR
+#define ULOG_OUTPUT_TIME
+#define ULOG_TIME_USING_TIMESTAMP
+#define ULOG_OUTPUT_LEVEL
+#define ULOG_OUTPUT_TAG
+/* end of log format */
+#define ULOG_BACKEND_USING_CONSOLE
 /* end of Utilities */
 
 /* Using USB legacy version */
 
 /* end of Using USB legacy version */
 /* end of RT-Thread Components */
-
-/* RT-Thread Utestcases */
-
-/* end of RT-Thread Utestcases */
 
 /* RT-Thread online packages */
 
@@ -280,6 +316,17 @@
 /* Micrium: Micrium software products porting for RT-Thread */
 
 /* end of Micrium: Micrium software products porting for RT-Thread */
+#define PKG_USING_FLASHDB
+#define FDB_USING_KVDB
+#define FDB_KV_AUTO_UPDATE
+#define FDB_USING_TSDB
+#define FDB_USING_FAL_MODE
+#define FDB_WRITE_GRAN_1BIT
+#define FDB_WRITE_GRAN 1
+#define FDB_NOT_USING_FILE_MODE
+#define FDB_DEBUG_ENABLE
+#define PKG_USING_FLASHDB_V20100
+#define PKG_FLASHDB_VER_NUM 0x20100
 /* end of system packages */
 
 /* peripheral libraries and drivers */
@@ -361,6 +408,13 @@
 /* entertainment: terminal games and other interesting software packages */
 
 /* end of entertainment: terminal games and other interesting software packages */
+#define PKG_USING_CANFESTIVAL
+#define CANFESTIVAL_CAN_DEVICE_NAME "can0"
+#define CANFESTIVAL_TIMER_DEVICE_NAME "timer5"
+#define CANFESTIVAL_RECV_THREAD_PRIO 9
+#define CANFESTIVAL_TIMER_THREAD_PRIO 10
+#define CANFESTIVAL_USING_EG_MASTER402
+#define PKG_USING_CANFESTIVAL_V100
 /* end of miscellaneous packages */
 
 /* Arduino libraries */
@@ -417,15 +471,38 @@
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USING_SPI_FLASH
+#define BSP_USING_SPI_FLASH_COMMON
+
+/* SPI Flash */
+
+#define BSP_USING_SPI5_FLASH
+/* end of SPI Flash */
+/* end of Onboard Peripheral Drivers */
+
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_GPIO
 #define BSP_USING_UART
-#define BSP_USING_SERIAL_V1
+#define BSP_USING_SERIAL_V2
 #define BSP_USING_UART0
 #define BSP_UART0_TX_PIN "PA9"
 #define BSP_UART0_RX_PIN "PA10"
 #define BSP_UART0_AFIO "AF7"
+#define BSP_UART0_RX_USING_DMA
+#define BSP_UART0_TX_USING_DMA
+#define BSP_UART0_DMA_PING_BUFSIZE 512
+#define BSP_UART0_RX_BUFSIZE 1024
+#define BSP_UART0_TX_BUFSIZE 1024
+#define BSP_USING_SPI
+#define BSP_USING_SPI5
+#define BSP_USING_HWTIMER
+#define BSP_USING_HWTIMER5
+#define BSP_USING_HWTIMER6
+#define BSP_USING_CAN
+#define BSP_USING_CAN0
+#define BSP_CAN0_TX_PH13
+#define BSP_CAN0_RX_PI9
 #define BSP_USING_GD_DBG
 /* end of On-chip Peripheral Drivers */
 

@@ -87,8 +87,8 @@ static const struct spi_flash_config flash_configs[] =
     {
         .bus_name    = "spi5",
         .device_name = "spi50",
-        .flash_name  = "gd25q_spi5",
-        .cs_pin      = GET_PIN(F, 6),  /* Note: Update CS pin according to actual hardware */
+        .flash_name  = "GD25Q16B",
+        .cs_pin      = GET_PIN(I, 8),  /* Note: Update CS pin according to actual hardware */
     },
 #endif
 };

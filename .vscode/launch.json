@@ -1,0 +1,22 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PyOCD",
+            "cwd": "${workspaceFolder}",
+            "executable": "./rtthread.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "entry",
+            "servertype": "pyocd",
+            "interface": "swd",
+            "device": "gd32f527is",
+            "cmsisPack": "/home/raw/.local/share/cmsis-pack-manager/GigaDevice/GD32F527_DFP/1.3.0.pack",
+            "svdFile": "/home/raw/.local/share/cmsis-pack-manager/SVD_manager/GigaDevice/GD32F527_SVD/GD32F527.svd",
+            "targetId": "GD32F527IS"
+        }
+    ]
+}

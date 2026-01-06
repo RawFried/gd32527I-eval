@@ -59,6 +59,7 @@ __exit:
 
     return result;
 }
+INIT_COMPONENT_EXPORT(fal_init);
 
 /**
  * Check if the FAL is initialized successfully

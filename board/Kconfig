@@ -13,7 +13,57 @@ config SOC_GD32F527IS
     default y
 
 menu "Onboard Peripheral Drivers"
+config BSP_USING_SPI_FLASH
+        bool "Enable SPI Flash support"
+        default n
 
+    if BSP_USING_SPI_FLASH
+
+        #
+        # 公共 SPI Flash 依赖（内部使用）
+        #
+        config BSP_USING_SPI_FLASH_COMMON
+            bool
+            default y
+            select BSP_USING_SPI
+            select RT_USING_FAL
+            select FAL_USING_SFUD_PORT
+            select RT_USING_SFUD
+
+        menu "SPI Flash"
+
+            config BSP_USING_SPI1_FLASH
+                bool "Enable SPI1 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI1
+                default n
+            
+            config BSP_USING_SPI2_FLASH
+                bool "Enable SPI2 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI2
+                default n
+
+            config BSP_USING_SPI3_FLASH
+                bool "Enable SPI3 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI3
+                default n
+
+            config BSP_USING_SPI4_FLASH
+                bool "Enable SPI4 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI4
+                default n
+
+            config BSP_USING_SPI5_FLASH
+                bool "Enable SPI5 Flash"
+                select BSP_USING_SPI_FLASH_COMMON
+                select BSP_USING_SPI5
+                default n
+
+        endmenu    # SPI Flash
+    endif         # BSP_USING_SPI_FLASH
 endmenu
 
 menu "On-chip Peripheral Drivers"
@@ -269,20 +319,64 @@ menu "On-chip Peripheral Drivers"
                 default n
         endif
 
-    menuconfig BSP_USING_TIM
+    menuconfig BSP_USING_HWTIMER
         bool "Enable timer"
         default n
         select RT_USING_HWTIMER
-        if BSP_USING_TIM
-            config BSP_USING_TIM10
+        if BSP_USING_HWTIMER
+            config BSP_USING_HWTIMER0
+                bool "Enable TIM0"
+                default n
+
+            config BSP_USING_HWTIMER1
+                bool "Enable TIM1"
+                default n
+            
+            config BSP_USING_HWTIMER2
+                bool "Enable TIM2"
+                default n
+            
+            config BSP_USING_HWTIMER3
+                bool "Enable TIM3"
+                default n
+
+            config BSP_USING_HWTIMER4
+                bool "Enable TIM4"
+                default n
+
+            config BSP_USING_HWTIMER5
+                bool "Enable TIM5"
+                default n
+
+            config BSP_USING_HWTIMER6
+                bool "Enable TIM6"
+                default n
+
+            config BSP_USING_HWTIMER7
+                bool "Enable TIM7"
+                default n
+
+            config BSP_USING_HWTIMER8
+                bool "Enable TIM8"
+                default n
+
+            config BSP_USING_HWTIMER9
+                bool "Enable TIM9"
+                default n
+
+            config BSP_USING_HWTIMER10
                 bool "Enable TIM10"
                 default n
 
-            config BSP_USING_TIM11
+            config BSP_USING_HWTIMER11
                 bool "Enable TIM11"
                 default n
 
-            config BSP_USING_TIM12
+            config BSP_USING_HWTIMER12
+                bool "Enable TIM12"
+                default n
+
+            config BSP_USING_HWTIMER13
                 bool "Enable TIM13"
                 default n
         endif
