@@ -136,6 +136,25 @@ g_pfnVectors:
     .weak  Reset_Handler
     .type  Reset_Handler, %function
 Reset_Handler:
+    /* =====================================================
+     * ECC SRAM initialization
+     * Write whole DATA SRAM once to generate ECC bits
+     * ===================================================== */
+    .extern __ram_start__
+    .extern __ram_end__
+
+    ldr     r0, =__ram_start__
+    ldr     r1, =__ram_end__
+    movs    r2, #0
+
+ecc_ram_init:
+    strd    r2, r2, [r0], #8     /* write 8 bytes per loop */
+    cmp     r0, r1
+    blo     ecc_ram_init
+
+    /* =====================================================
+     * Copy .data from Flash to SRAM
+     * ===================================================== */
     ldr r1, =_sidata
     ldr r2, =_sdata
     ldr r3, =_edata

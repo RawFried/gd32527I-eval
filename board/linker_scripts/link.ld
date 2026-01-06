@@ -12,6 +12,10 @@ MEMORY
 ENTRY(Reset_Handler)
 _system_stack_size = 0x200;
 
+/* add ram head and tail addr to reset ram */
+__ram_start__ = ORIGIN(DATA);
+__ram_end__   = ORIGIN(DATA) + LENGTH(DATA);
+
 SECTIONS
 {
     .text :
