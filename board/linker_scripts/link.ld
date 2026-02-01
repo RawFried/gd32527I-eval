@@ -89,6 +89,8 @@ SECTIONS
         _estack = .;
     } >DATA
 
+    PROVIDE(_sstack = _estack);
+
     __bss_start = .;
     .bss :
     {
