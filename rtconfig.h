@@ -90,6 +90,10 @@
 /* kservice options */
 
 /* end of kservice options */
+#define RT_USING_DEBUG
+#define RT_DEBUGING_ASSERT
+#define RT_DEBUGING_COLOR
+#define RT_DEBUGING_CONTEXT
 
 /* Inter-Thread communication */
 
@@ -297,6 +301,12 @@
 
 /* tools packages */
 
+#define PKG_USING_CMBACKTRACE
+#define PKG_CMBACKTRACE_PLATFORM_M33
+#define PKG_CMBACKTRACE_DUMP_STACK
+#define PKG_CMBACKTRACE_PRINT_CHINESE_UTF8
+#define PKG_USING_CMBACKTRACE_LATEST_VERSION
+#define PKG_CMBACKTRACE_VER_NUM 0x99999
 /* end of tools packages */
 
 /* system packages */
